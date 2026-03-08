@@ -9,7 +9,7 @@
 - CLI entry point for quick file generation.
 
 ## Requirements
-- Python 3.8+
+- Python 3.9+
 
 ## Install
 
