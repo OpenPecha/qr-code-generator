@@ -1,148 +1,63 @@
-# README
+# qr_code_generator
 
-> **Note:** This readme template is based on one from the [Good Docs Project](https://thegooddocsproject.dev). You can find it and a guide to filling it out [here](https://gitlab.com/tgdp/templates/-/tree/main/readme). (_Erase this note after filling out the readme._)
+`qr_code_generator` is a small Python package for generating rounded monochrome QR codes as PNG or SVG files. It is intentionally focused on one clean visual style instead of exposing a large preset system.
 
-<h1 align="center">
-  <br>
-  <a href="https://openpecha.org"><img src="https://avatars.githubusercontent.com/u/82142807?s=400&u=19e108a15566f3a1449bafb03b8dd706a72aebcd&v=4" alt="OpenPecha" width="150"></a>
-  <br>
-</h1>
+## Features
+- Rounded QR modules with a monochrome palette.
+- Rounded outer finder eyes and circular inner finder dots.
+- Simple Python API for generating one QR at a time.
+- CLI entry point for quick file generation.
 
-## _Project Name_
-_The project name should match its code's capability so that new users can easily understand what it does._
+## Requirements
+- Python 3.8+
 
-## Owner(s)
+## Install
 
-_Change to the owner(s) of the new repo. (This template's owners are:)_
-- [@ngawangtrinley](https://github.com/ngawangtrinley)
-- [@mikkokotila](https://github.com/mikkokotila)
-- [@evanyerburgh](https://github.com/evanyerburgh)
+```bash
+pip install -e .
+```
 
+For development tools:
 
-## Table of contents
-<p align="center">
-  <a href="#project-description">Project description</a> •
-  <a href="#who-this-project-is-for">Who this project is for</a> •
-  <a href="#project-dependencies">Project dependencies</a> •
-  <a href="#instructions-for-use">Instructions for use</a> •
-  <a href="#contributing-guidelines">Contributing guidelines</a> •
-  <a href="#additional-documentation">Additional documentation</a> •
-  <a href="#how-to-get-help">How to get help</a> •
-  <a href="#terms-of-use">Terms of use</a>
-</p>
-<hr>
+```bash
+pip install -e ".[dev]"
+```
 
-## Project description
-_Use one of these:_
+## Python usage
 
-With _Project Name_ you can _verb_ _noun_...
+```python
+from qr_code_generator import generate_qr
 
-_Project Name_ helps you _verb_ _noun_...
+generate_qr(
+    "https://example.com",
+    "output/example.png",
+)
+```
 
+You can also customize the basic size and print settings:
 
-## Who this project is for
-This project is intended for _target user_ who wants to _user objective_.
+```python
+from qr_code_generator import QRCodeStyle, generate_qr
 
+style = QRCodeStyle(size_inches=2.5, dpi=300, border=4)
+generate_qr("https://example.com", "output/example.svg", style=style)
+```
 
-## Project dependencies
-Before using _Project Name_, ensure you have:
-* python _version_
-* _Prerequisite 2_
-* _Prerequisite 3..._
+## CLI usage
 
+```bash
+qr-code-generator "https://example.com" --output output/example.png
+```
 
-## Instructions for use
-Get started with _Project Name_ by _(write the first step a user needs to start using the project. Use a verb to start.)_.
+```bash
+qr-code-generator "https://example.com" --output output/example.svg --format svg
+```
 
+## Package layout
+- `src/qr_code_generator/generator.py`: core PNG and SVG generation logic.
+- `src/qr_code_generator/cli.py`: command-line entry point.
+- `tests/test_generator.py`: smoke tests for package import and file output.
 
-### Install _Project Name_
-1. _Write the step here._ 
+## License
 
-    _Explanatory text here_ 
-    
-    _(Optional: Include a code sample or screenshot that helps your users complete this step.)_
-
-2. _Write the step here._
- 
-    a. _Substep 1_ 
-    
-    b. _Substep 2_
-
-
-### Configure _Project Name_
-1. _Write the step here._
-2. _Write the step here._
-
-
-### Run _Project Name_
-1. _Write the step here._
-2. _Write the step here._
-
-
-### Troubleshoot _Project Name_
-1. _Write the step here._
-2. _Write the step here._
-
-<table>
-  <tr>
-   <td>
-    Issue
-   </td>
-   <td>
-    Solution
-   </td>
-  </tr>
-  <tr>
-   <td>
-    _Describe the issue here_
-   </td>
-   <td>
-    _Write solution here_
-   </td>
-  </tr>
-  <tr>
-   <td>
-    _Describe the issue here_
-   </td>
-   <td>
-    _Write solution here_
-   </td>
-  </tr>
-  <tr>
-   <td>
-    _Describe the issue here_
-   </td>
-   <td>
-    _Write solution here_
-   </td>
-  </tr>
-</table>
-
-
-Other troubleshooting supports:
-* _Link to FAQs_
-* _Link to runbooks_
-* _Link to other relevant support information_
-
-
-## Contributing guidelines
-If you'd like to help out, check out our [contributing guidelines](/CONTRIBUTING.md).
-
-
-## Additional documentation
-_Include links and brief descriptions to additional documentation._
-
-For more information:
-* [Reference link 1](#)
-* [Reference link 2](#)
-* [Reference link 3](#)
-
-
-## How to get help
-* File an issue.
-* Email us at openpecha[at]gmail.com.
-* Join our [discord](https://discord.com/invite/7GFpPFSTeA).
-
-
-## Terms of use
-_Project Name_ is licensed under the [MIT License](/LICENSE.md).
+Licensed under the MIT License. See `LICENSE`.

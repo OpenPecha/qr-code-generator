@@ -3,19 +3,27 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "project_name"
+name = "qr_code_generator"
 version = "0.0.1"
 authors = [
   { name="OpenPecha", email="dev@openpecha.org" },
 ]
-description = "A small example package"
+description = "Simple Python package for generating rounded monochrome QR codes."
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = [
+    "qrcode[pil]>=8.2",
+    "Pillow>=10.0.0",
+]
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+
+[project.scripts]
+qr-code-generator = "qr_code_generator.cli:main"
 
 [project.optional-dependencies]
 dev = [
@@ -24,7 +32,12 @@ dev = [
     "pre-commit",
 ]
 
-
 [project.urls]
-"Homepage" = "https://github.com/OpenPecha/openpecha-project-template"
-"Bug Tracker" = "https://github.com/OpenPecha/openpecha-project-template/issues"
+"Homepage" = "https://github.com/OpenPecha/qr-code-generator"
+"Bug Tracker" = "https://github.com/OpenPecha/qr-code-generator/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
